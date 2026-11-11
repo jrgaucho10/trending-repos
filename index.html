@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+<meta name="theme-color" content="#0a0a0f" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="TrendingRepos" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<title>Trending Repos</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1>Trending Repos</h1>
+      <div class="topbar-actions">
+        <button id="sortBtn" class="icon-btn" aria-label="Sort">⇅</button>
+        <button id="filterBtn" class="icon-btn" aria-label="Filter">⚙</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-period="daily">Today</button>
+      <button class="tab" data-period="weekly">This Week</button>
+      <button class="tab" data-period="monthly">This Month</button>
+    </nav>
+
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search repos…" />
+    </div>
+
+    <div id="demoBanner" class="demo-banner" hidden>⚠️ Showing demo data. Host this page over HTTPS for live trending repos.</div>
+    <main id="list" class="list"></main>
+    <div id="empty" class="empty" hidden>No repositories. Try another period or language.</div>
+    <div id="loading" class="loading" hidden><div class="spinner"></div><p>Loading trending repos…</p></div>
+    <div id="error" class="error" hidden>
+      <p id="errorMsg"></p>
+      <button id="retryBtn">Try Again</button>
+    </div>
+
+    <!-- Detail modal -->
+    <div id="detail" class="detail" hidden>
+      <div class="detail-card">
+        <button id="closeDetail" class="close-btn">✕</button>
+        <div id="detailContent"></div>
+      </div>
+    </div>
+
+    <!-- Filter sheet -->
+    <div id="filterSheet" class="sheet" hidden>
+      <div class="sheet-card">
+        <h3>Language</h3>
+        <div id="langList" class="lang-list"></div>
+        <button id="closeFilter" class="primary-btn">Done</button>
+      </div>
+    </div>
+
+    <!-- Sort sheet -->
+    <div id="sortSheet" class="sheet" hidden>
+      <div class="sheet-card">
+        <h3>Sort by</h3>
+        <button class="sort-opt" data-sort="stars">Stars</button>
+        <button class="sort-opt" data-sort="importance">Importance</button>
+        <button id="closeSort" class="primary-btn">Done</button>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="bnav active" data-tab="trending">🔥<span>Trending</span></button>
+      <button class="bnav" data-tab="favorites">♥<span>Favorites</span></button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+  <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(()=>{});</script>
+</body>
+</html>
